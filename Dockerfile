@@ -1,3 +1,4 @@
+#-------------- 编译镜像 ------------------#
 FROM golang:latest as builder
 
 WORKDIR /go/release
@@ -8,15 +9,14 @@ ENV GOARCH=amd64
 
 ADD . .
 
-RUN  go build -ldflags '-w -s' -o app src
+RUN go build -ldflags '-w -s' -a -installsuffix cgo -o app main.go
 
-# -------------------------------------
+
+#-------------- 空镜像 ------------------#
 
 FROM scratch
 
 LABEL authorMail="concurrent.exec@gmail.com"
-
-WORKDIR /
 
 COPY --from=builder /go/release/app /
 
