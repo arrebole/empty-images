@@ -1,4 +1,4 @@
-## docker空镜像, 构建最小服务
+## 在空镜像里跑服务
 > 利用go的纯静态链接的能力，构建最小的镜像。
 
 ## only 5.39MB
@@ -11,6 +11,6 @@ docker images
 ## How to Use
 ```bash
 git clone git clone https://github.com/arrebole/empty-images.git && cd empty-images
-docker build -t smaple .
-docker run -p 80:80 -d smaple 
+docker build -t sample .
+docker run -p 80:80 -d sample 
 ```
