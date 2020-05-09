@@ -9,7 +9,9 @@ ENV GOARCH=amd64
 
 ADD . .
 
-RUN go build -ldflags '-w -s' -a -installsuffix cgo -o app main.go
+# 剔除符号表使用 -installsuffix cgo
+# 强制全部重新编译使用 -a
+RUN go build -ldflags '-w -s' -o app main.go
 
 
 #-------------- 空镜像 ------------------#
